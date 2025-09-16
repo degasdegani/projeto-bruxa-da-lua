@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruxa da Lua - Consultas e Rituais Místicos</title>
+    
+    <!-- INÍCIO DO CSS -->
+    <style>
+        /* ===== RESET E CONFIGURAÇÕES GERAIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* ===== VARIÁVEIS DE CORES (PALETA MONOCROMÁTICA + DOURADO) ===== */
+        :root {
+            --preto-profundo: #0a0a0a;
+            --cinza-escuro: #1a1a1a;
+            --cinza-medio: #2d2d2d;
+            --cinza-claro: #4a4a4a;
+            --cinza-suave: #6b6b6b;
+            --cinza-texto: #b0b0b0;
+            --cinza-fundo: #8a8a8a;
+            --dourado-principal: #d4af37;
+            --dourado-claro: #f4e4bc;
+            --dourado-escuro: #b8941f;
+            --branco-suave: #f5f5f5;
+        }
+        
+        /* ===== CONFIGURAÇÃO DO CORPO DO SITE ===== */
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--preto-profundo);
+            color: var(--cinza-texto);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* ===== FUNDO ANIMADO COM LUAS E FUMAÇA ===== */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        /* ===== LUAS MINGUANTES NO FUNDO ===== */
+        .moon {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            opacity: 0.25;
+        }
+        
+        .moon::before {
+            content: '☾';
+            font-size: 24px;
+            color: var(--dourado-principal);
+            position: absolute;
+        }
+        
+        /* Posicionamento das luas espalhadas */
+        .moon1 { top: 10%; left: 15%; animation: float 20s infinite ease-in-out; }
+        .moon2 { top: 30%; left: 80%; animation: float 25s infinite ease-in-out 2s; }
+        .moon3 { top: 60%; left: 25%; animation: float 22s infinite ease-in-out 1s; }
+        .moon4 { top: 75%; left: 70%; animation: float 28s infinite ease-in-out 3s; }
+        .moon5 { top: 45%; left: 50%; animation: float 24s infinite ease-in-out 1.5s; }
+        .moon6 { top: 85%; left: 10%; animation: float 26s infinite ease-in-out 2.5s; }
+        .moon7 { top: 20%; left: 40%; animation: float 23s infinite ease-in-out 0.5s; }
+        .moon8 { top: 50%; left: 90%; animation: float 27s infinite ease-in-out 1.8s; }
+        .moon9 { top: 5%; left: 60%; animation: float 21s infinite ease-in-out 2.2s; }
+        .moon10 { top: 40%; left: 5%; animation: float 26s infinite ease-in-out 0.8s; }
+        .moon11 { top: 70%; left: 45%; animation: float 24s infinite ease-in-out 3.5s; }
+        .moon12 { top: 25%; left: 95%; animation: float 22s infinite ease-in-out 1.2s; }
+        .moon13 { top: 90%; left: 35%; animation: float 27s infinite ease-in-out 2.8s; }
+        .moon14 { top: 55%; left: 65%; animation: float 23s infinite ease-in-out 0.3s; }
+        .moon15 { top: 15%; left: 30%; animation: float 25s infinite ease-in-out 1.9s; }
+        .moon16 { top: 80%; left: 85%; animation: float 21s infinite ease-in-out 2.4s; }
+        
+        /* ===== ANIMAÇÃO DE FLUTUAÇÃO DAS LUAS ===== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        /* ===== EFEITO DE FUMAÇA PASSANDO ===== */
+        .smoke {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255,255,255,0.02) 25%, 
+                rgba(255,255,255,0.05) 50%, 
+                rgba(255,255,255,0.02) 75%, 
+                transparent 100%);
+            animation: smokeMove 30s linear infinite;
+        }
+        
+        @keyframes smokeMove {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+        
+        /* ===== CONTAINER PRINCIPAL DO CONTEÚDO ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* ===== HEADER - TÍTULO PRINCIPAL "BRUXA DA LUA" ===== */
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(180deg, var(--cinza-escuro) 0%, transparent 100%);
+        }
+        
+        h1 {
+            font-size: 3.5em;
+            color: var(--dourado-principal);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 30px rgba(212,175,55,0.3);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+        
+        /* ===== EFEITO DE BRILHO NO TÍTULO ===== */
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 30px rgba(212,175,55,0.3); }
+            to { text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 40px rgba(212,175,55,0.6); }
+        }
+        
+        /* ===== MENU DE NAVEGAÇÃO ===== */
+        nav {
+            background-color: var(--cinza-medio);
+            padding: 15px 0;
+            border-top: 1px solid var(--dourado-escuro);
+            border-bottom: 1px solid var(--dourado-escuro);
+            margin-bottom: 40px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: var(--cinza-texto);
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        nav a:hover {
+            color: var(--dourado-claro);
+            background-color: rgba(212,175,55,0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* ===== SEÇÃO DE APRESENTAÇÃO (CONTEÚDO + IMAGEM) ===== */
+        .apresentacao {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 60px;
+            align-items: center;
+            background-color: rgba(45,45,45,0.3);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid var(--cinza-claro);
+        }
+        
+        /* ===== CONTEÚDO DE TEXTO DA APRESENTAÇÃO ===== */
+        .apresentacao-conteudo {
+            flex: 1;
+        }
+        
+        .apresentacao h2 {
+            color: var(--dourado-principal);
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .apresentacao p {
+            color: var(--cinza-texto);
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+        
+        /* ===== ÁREA DA IMAGEM NA APRESENTAÇÃO ===== */
+        .apresentacao-imagem {
+            flex: 0 0 300px;
+        }
+        
+        .apresentacao-imagem img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            border: 2px solid var(--dourado-escuro);
+        }
+        
+        /* ===== PLACEHOLDER PARA IMAGEM (REMOVER QUANDO ADICIONAR IMAGEM REAL) ===== */
+        .image-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, var(--cinza-medio) 0%, var(--cinza-escuro) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cinza-suave);
+            border: 2px solid var(--dourado-escuro);
+        }
+        
+        /* ===== SEÇÃO DE SERVIÇOS ===== */
+        .servicos {
+            margin-bottom: 60px;
+        }
+        
+        .servicos h2 {
+            color: var(--dourado-principal);
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        /* ===== GRID DE BLOCOS DE SERVIÇOS ===== */
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        /* ===== BLOCO INDIVIDUAL DE SERVIÇO ===== */
+        .servico-bloco {
+            background: linear-gradient(135deg, var(--cinza-medio) 0%, var(--cinza-escuro) 100%);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid var(--cinza-claro);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .servico-bloco::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--dourado-escuro), transparent, var(--dourado-escuro));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+            border-radius: 10px;
+        }
+        
+        .servico-bloco:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212,175,55,0.2);
+        }
+        
+        .servico-bloco:hover::before {
+            opacity: 0.3;
+        }
+        
+        /* ===== TÍTULO DO BLOCO DE SERVIÇO (H3) ===== */
+        .servico-bloco h3 {
+            color: var(--dourado-claro);
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        /* ===== PARÁGRAFO DO BLOCO DE SERVIÇO ===== */
+        .servico-bloco p {
+            color: var(--cinza-texto);
+            line-height: 1.8;
+            text-align: justify;
+        }
+        
+        /* ===== FORMULÁRIO DE CONTATO ===== */
+        .contato {
+            background: linear-gradient(135deg, var(--cinza-escuro) 0%, var(--cinza-medio) 100%);
+            padding: 40px;
+            border-radius: 10px;
+            border: 1px solid var(--dourado-escuro);
+            margin-top: 60px;
+        }
+        
+        .contato h2 {
+            color: var(--dourado-principal);
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        /* ===== ESTRUTURA DO FORMULÁRIO ===== */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            color: var(--dourado-claro);
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        /* ===== CAMPOS DE INPUT DO FORMULÁRIO ===== */
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--cinza-escuro);
+            border: 1px solid var(--cinza-claro);
+            border-radius: 5px;
+            color: var(--branco-suave);
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--dourado-principal);
+            box-shadow: 0 0 10px rgba(212,175,55,0.2);
+        }
+        
+        /* ===== CAMPO DE TEXTO (TEXTAREA) ===== */
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* ===== BOTÃO DE ENVIO DO FORMULÁRIO ===== */
+        .btn-enviar {
+            background: linear-gradient(135deg, var(--dourado-principal) 0%, var(--dourado-escuro) 100%);
+            color: var(--preto-profundo);
+            padding: 12px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 30px auto 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-enviar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(212,175,55,0.4);
+        }
+        
+        /* ===== RODAPÉ ===== */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            border-top: 1px solid var(--cinza-claro);
+            color: var(--cinza-suave);
+        }
+        
+        /* ===== RESPONSIVIDADE PARA TABLETS ===== */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .apresentacao {
+                flex-direction: column;
+            }
+            
+            .apresentacao-imagem {
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+        }
+        
+        /* ===== RESPONSIVIDADE PARA CELULARES ===== */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .servico-bloco {
+                padding: 20px;
+            }
+            
+            .contato {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- INÍCIO DOS ELEMENTOS DE FUNDO ANIMADO -->
+    <div class="background-animation">
+        <!-- Luas minguantes espalhadas pelo fundo -->
+        <div class="moon moon1"></div>
+        <div class="moon moon2"></div>
+        <div class="moon moon3"></div>
+        <div class="moon moon4"></div>
+        <div class="moon moon5"></div>
+        <div class="moon moon6"></div>
+        <div class="moon moon7"></div>
+        <div class="moon moon8"></div>
+        <div class="moon moon9"></div>
+        <div class="moon moon10"></div>
+        <div class="moon moon11"></div>
+        <div class="moon moon12"></div>
+        <div class="moon moon13"></div>
+        <div class="moon moon14"></div>
+        <div class="moon moon15"></div>
+        <div class="moon moon16"></div>
+        
+        <!-- Efeito de fumaça passando -->
+        <div class="smoke"></div>
+    </div>
+    
+    <!-- INÍCIO DO CONTAINER PRINCIPAL -->
+    <div class="container">
+        
+        <!-- HEADER - TÍTULO PRINCIPAL -->
+        <header>
+            <h1>Bruxa da Lua</h1>
+        </header>
+        
+        <!-- MENU DE NAVEGAÇÃO -->
+        <nav>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+        
+        <!-- SEÇÃO DE APRESENTAÇÃO -->
+        <section class="apresentacao" id="sobre">
+            <!-- CONTEÚDO DE TEXTO À DIREITA -->
+            <div class="apresentacao-conteudo">
+                <h2>Bem-vindo ao Mundo Místico</h2>
+                <p>
+                    <!-- ADICIONE SEU TEXTO DE APRESENTAÇÃO AQUI -->
+                    Adentre o universo místico onde a sabedoria ancestral encontra a espiritualidade moderna. 
+                    Através das artes divinatórias e práticas esotéricas, desvende os mistérios que o universo 
+                    reserva para você. Nossa jornada é guiada pela luz da lua, revelando caminhos ocultos e 
+                    possibilidades infinitas em sua vida.
+                </p>
+            </div>
+            
+            <!-- ÁREA DA IMAGEM À ESQUERDA -->
+            <div class="apresentacao-imagem">
+                <!-- SUBSTITUA ESTE PLACEHOLDER PELA SUA IMAGEM -->
+                <!-- Para adicionar sua imagem, use: <img src="caminho-da-sua-imagem.jpg" alt="Descrição da imagem"> -->
+                <div class="image-placeholder">
+                    [Sua Imagem Aqui]
+                </div>
+            </div>
+        </section>
+        
+        <!-- SEÇÃO DE SERVIÇOS -->
+        <section class="servicos" id="servicos">
+            <h2>Nossos Serviços</h2>
+            
+            <div class="servicos-grid">
+                
+                <!-- BLOCO 1: CONSULTA BARALHO CIGANO -->
+                <div class="servico-bloco">
+                    <h3>Consulta Baralho Cigano</h3>
+                    <p>
+                        <!-- ADICIONE SEU TEXTO SOBRE BARALHO CIGANO AQUI -->
+                        Desvende os segredos do seu destino através das cartas ciganas. 
+                        Uma leitura profunda que revela aspectos ocultos de sua vida, 
+                        trazendo clareza para suas questões mais importantes.
+                    </p>
+                </div>
+                
+                <!-- BLOCO 2: RITUAIS -->
+                <div class="servico-bloco">
+                    <h3>Rituais</h3>
+                    <p>
+                        <!-- ADICIONE SEU TEXTO SOBRE RITUAIS AQUI -->
+                        Rituais personalizados para proteção, prosperidade e harmonização. 
+                        Trabalhos espirituais realizados com o poder das fases lunares 
+                        e a sabedoria das antigas tradições.
+                    </p>
+                </div>
+                
+                <!-- BLOCO 3: PRÁTICAS -->
+                <div class="servico-bloco">
+                    <h3>Práticas</h3>
+                    <p>
+                        <!-- ADICIONE SEU TEXTO SOBRE PRÁTICAS AQUI -->
+                        Aprenda práticas místicas para seu desenvolvimento espiritual. 
+                        Meditações guiadas, banhos energéticos e técnicas de proteção 
+                        para fortalecer sua conexão com o universo.
+                    </p>
+                </div>
+                
+                <!-- BLOCO 4: CURSOS DISPONÍVEIS -->
+                <div class="servico-bloco">
+                    <h3>Cursos Disponíveis</h3>
+                    <p>
+                        <!-- ADICIONE SEU TEXTO SOBRE CURSOS AQUI -->
+                        Desperte seu poder interior com nossos cursos especializados. 
+                        Aprenda tarot, runas, cristaloterapia e outras artes místicas 
+                        em um ambiente acolhedor e transformador.
+                    </p>
+                </div>
+                
+            </div>
+        </section>
+        
+        <!-- FORMULÁRIO DE CONTATO -->
+        <section class="contato" id="contato">
+            <h2>Entre em Contato</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: var(--cinza-texto);">
+                Deixe sua mensagem ou agende sua consulta
+            </p>
+            
+            <form>
+                <!-- CAMPO NOME -->
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                
+                <!-- CAMPO E-MAIL -->
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <!-- CAMPO CELULAR -->
+                <div class="form-group">
+                    <label for="celular">Celular</label>
+                    <input type="tel" id="celular" name="celular" placeholder="(XX) XXXXX-XXXX" required>
+                </div>
+                
+                <!-- CAMPO MENSAGEM -->
+                <div class="form-group">
+                    <label for="mensagem">Descrição do Assunto / Agendamento</label>
+                    <textarea id="mensagem" name="mensagem" required 
+                        placeholder="Descreva o motivo do seu contato ou solicite o agendamento de uma consulta..."></textarea>
+                </div>
+                
+                <!-- BOTÃO DE ENVIO -->
+                <button type="submit" class="btn-enviar">Enviar Mensagem</button>
+            </form>
+        </section>
+        
+        <!-- RODAPÉ -->
+        <footer>
+            <p>&copy; 2025 Bruxa da Lua - Todos os direitos reservados</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Que a luz da lua ilumine seu caminho ☾</p>
+        </footer>
+        
+    </div>
+</body>
+</html>
